@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% load static %}
+{% block link %}{% endblock %}
+
+{% block content %}
+    <div class="row my-4 mt-3">
+        <div class="container col-md-6 ">
+            <div class="row m-2">
+                <img src="{{ object.image.url }}" class="img-fluid rounded-left vh-25" alt="{{ object.name }}" >
+            </div>
+            <div class="row m-2">
+                <a name="download" class="btn btn-success col-md-6 mx-auto my-auto" href="{{ object.file.url }}" role="button">Скачать</a>
+                <p class="col-md-4 my-auto">{{ object.date }}</p>
+            </div>
+        </div>
+        <div class="container col-md-6">
+            <div class="row">
+                <h1 class="col-md-auto">{{ object.name }}</h1>
+            </div>
+            <div class="row">
+                <p class="lead">
+                    {{ object.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock%}
+    

@@ -1,0 +1,7 @@
+<div class="row">
+    <form action="{{action_url}}" method="post" class="col-md-8">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit" class="btn btn-primary">{{ button }}</button>
+    </form>
+</div>

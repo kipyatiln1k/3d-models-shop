@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Колыма{% endblock %}
+
+{% load static %}
+{% block link %}{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-8 container">
+      <div class="row my-2">
+        <div class="container col-md-8">
+          <div class="row">              
+            <a class="col-md-4" href="{% url 'mdls:detail' pk=object.pk %}" role="button">
+              <div class="my-3 h-50">
+                <div class="card text-left">
+                  <img class="card-img-top" src="{{ object.image.url }}" alt="">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ object.name }}</h4>
+                  </div>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'form.html' with button='Поиск' %}
+  </div>
+{% endblock%}
+    
