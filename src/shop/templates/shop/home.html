@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Колыма{% endblock %}
+{% block title %}{% endblock %}
 
 {% load static %}
 {% block link %}{% endblock %}
@@ -10,7 +10,8 @@
     <div class="col-md-8 container">
       <div class="row my-2">
         <div class="container col-md-8">
-          <div class="row">              
+          <div class="row">
+            {% for object in page_obj %}              
             <a class="col-md-4" href="{% url 'mdls:detail' pk=object.pk %}" role="button">
               <div class="my-3 h-50">
                 <div class="card text-left">

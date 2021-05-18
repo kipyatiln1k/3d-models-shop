@@ -30,7 +30,7 @@ class Mdl(models.Model):
     description = models.TextField(editable=True, verbose_name='Описание модели')
     date = models.DateField(auto_now=False, auto_now_add=True, verbose_name='Дата добавления')
     file = models.FileField(upload_to='mdls/obj', verbose_name='Файл модели')
-    tags = models.ManyToManyField(Tag, verbose_name='Категории модели')
+    tags = models.ManyToManyField(Tag, verbose_name='Категории модели', related_name='model_tags')
     extension = models.CharField(max_length=10, default='.fbx', auto_created=True, verbose_name='Расширение модели')
     image = models.ImageField(upload_to='mdls/img', verbose_name='Изображение модели', default=None)
 
