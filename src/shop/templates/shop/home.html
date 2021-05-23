@@ -7,27 +7,36 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-md-8 container">
-      <div class="row my-2">
-        <div class="container col-md-8">
-          <div class="row">
-            {% for object in page_obj %}              
-            <a class="col-md-4" href="{% url 'mdls:detail' pk=object.pk %}" role="button">
-              <div class="my-3 h-50">
-                <div class="card text-left">
-                  <img class="card-img-top" src="{{ object.image.url }}" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">{{ object.name }}</h4>
-                  </div>
-                </div>
+    <div class="col-md-9 container row">
+      <div class="row my-2 mx-1">
+        {% for object in page_obj %}  
+        {% if user.is_authenticated %}
+        <a class="col-xl-3 col-lg-4 col-sm-6 col-12" href="{% url 'mdls:detail' pk=object.pk %}" role="button">
+          <div class="my-3">
+            <div class="card text-left">
+              <img class="card-img-top" src="{{ object.image.url }}" alt="" style="height: 150px;">
+              <div class="card-body">
+                <h4 class="card-title">{{ object.name }}</h4>
               </div>
-            </a>
-            {% endfor %}
+            </div>
+          </div>
+        </a>
+        {% else %}
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12 my-3">
+          <div class="card text-left">
+            <img class="card-img-top" src="{{ object.image.url }}" alt="" style="height: 150px;">
+            <div class="card-body">
+              <h4 class="card-title">{{ object.name }}</h4>
+            </div>
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
     </div>
-    {% include 'form.html' with button='Поиск' %}
+    <div class="col-md-3">
+    {% include 'get_form.html' with button='Поиск' %}
+    </div>
   </div>
 {% endblock%}
     

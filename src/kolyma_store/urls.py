@@ -20,8 +20,9 @@ from django.urls import path, include
 from shop.views import MdlListView
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='admin'),
+    path('admin/', admin.site.urls),
     path('', MdlListView.as_view(), name='home'),
-    path('models/', include(('mdls.urls', 'mdls')))
+    path('models/', include(('mdls.urls', 'mdls'))),
+    path('accounts/', include(('accounts.urls', 'accounts')))
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

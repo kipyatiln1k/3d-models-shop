@@ -40,7 +40,7 @@ class Mdl(models.Model):
 
         verbose_name = 'Модель'         
         verbose_name_plural = 'Модели'
-        ordering = ['date', 'name']  
+        # ordering = ['date', 'name']  
 
     def __str__(self):
         return self.name

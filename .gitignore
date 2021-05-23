@@ -1,3 +1,4 @@
 /.vscode
 /venv
 src/media/
+src/kolyma_store/settings/local_settings.py

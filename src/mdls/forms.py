@@ -13,6 +13,14 @@ class MdlTagSearchForm(forms.Form):
         widget=forms.SelectMultiple(attrs={
             'class':'form-control js-example-basic-multiple'
         }))
+    
+    order = forms.ChoiceField(label='Сортировать по:', 
+                              choices=[('date', 'Дате'), ('name', 'Названию')], 
+                              required=False, 
+                              widget=forms.Select(attrs={
+            'class':'form-control'
+        }))
+    
 
     def clean_field(self):
         data = self.cleaned_data.get("name")

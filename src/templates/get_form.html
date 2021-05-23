@@ -1,6 +1,5 @@
 <div class="row">
-    <form action="{{action_url}}" method="post" class="col-md">
-        {% csrf_token %}
+    <form action="{{action_url}}" method="get" class="col-md">
         {{ form.as_p }} 
         <button type="submit" class="btn btn-primary">{{ button }}</button>
     </form>
