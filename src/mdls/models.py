@@ -1,5 +1,8 @@
 import os
 from django.db import models
+from django.urls.base import reverse_lazy
+from accounts.forms import User
+from accounts.models import UserProfile
 
 from kolyma_store.settings import BASE_DIR
 
@@ -33,6 +36,7 @@ class Mdl(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name='Категории модели', related_name='model_tags')
     extension = models.CharField(max_length=10, default='.fbx', auto_created=True, verbose_name='Расширение модели')
     image = models.ImageField(upload_to='mdls/img', verbose_name='Изображение модели', default=None)
+    author = models.ForeignKey(UserProfile, verbose_name='Автор', on_delete=models.CASCADE, related_name='models')
 
 
     class Meta:
@@ -49,9 +53,9 @@ class Mdl(models.Model):
     #     """Save method for Mdl."""
     #     pass
 
-    # def get_absolute_url(self):
-    #     """Return absolute url for Mdl."""
-    #     return ('')
+    def get_absolute_url(self):
+        """Возвращает absolute url для Mdl."""
+        return reverse_lazy('mdls:detail', kwargs={'pk':self.pk})
 
     # TODO: Define custom methods here
     

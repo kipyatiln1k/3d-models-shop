@@ -72,3 +72,5 @@ class MdlForm(forms.ModelForm):
 
         model = Mdl
         fields = ('name', 'description', 'file', 'tags', 'image')
+    
+        

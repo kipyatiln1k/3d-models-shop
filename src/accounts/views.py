@@ -5,14 +5,43 @@ from django.views.generic import DetailView, TemplateView
 from django.views.generic.base import View
 from django.views.generic.edit import UpdateView
 from accounts.models import UserProfile
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from accounts.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 
 
 class ProfileDetailView(TemplateView):
     model = UserProfile
-    template_name = "accounts/detail.html"
+    template_name = "accounts/profile.html"
 
+
+class ProfileUpdateView(LoginRequiredMixin, TemplateView):
+    model = UserProfile
+    template_name = "accounts/update.html"
+    success_url = reverse_lazy('accounts:detail')
+    
+    def dispatch(self, request, *args, **kwargs):
+        p_form = ProfileForm(data=self.request.POST, instance=self.request.user.profile)
+        
+        if self.request.method=='POST' and p_form.is_valid():
+            p_form.save()
+            return redirect('accounts:detail')
+        return super().dispatch(request, *args, **kwargs)
+    
+    
+    def form_valid(self, form):
+        p_form = ProfileForm(data=self.request.POST, instance=self.request.user.profile)
+        p_form.save()
+        return redirect('accounts:detail')
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        form = ProfileForm(data=self.request.POST, instance=self.request.user.profile)
+        context['form'] = form
+        
+        return context    
 
 
 def login_view(request):
