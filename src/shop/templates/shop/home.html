@@ -9,6 +9,9 @@
   <div class="row">
     <div class="col-md-9 container row">
       <div class="row my-2 mx-1">
+        <a name="" id="" class="btn btn-success" href="{% url 'mdls:create' %}" role="button">Добавить</a>
+      </div>
+      <div class="row my-2 mx-1">
         {% for object in page_obj %}  
         {% if user.is_authenticated %}
         <a class="col-xl-3 col-lg-4 col-sm-6 col-12" href="{% url 'mdls:detail' pk=object.pk %}" role="button">

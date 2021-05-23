@@ -29,7 +29,7 @@ class MdlListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        form = MdlTagSearchForm()
+        form = MdlTagSearchForm(self.request.GET)
         context['form'] = form
         
         context['tags'] = self.request.GET.get('tags', Tag.objects.all().values_list('id', flat=True))

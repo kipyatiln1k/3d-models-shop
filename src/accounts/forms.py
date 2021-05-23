@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model, authenticate
 from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import check_password
+from accounts.models import UserProfile
 
 User = get_user_model()
 
@@ -51,11 +52,15 @@ class UserRegistrationForm(forms.ModelForm):
         'class': 'form-control',
         'place_holder': 'Повторите пароль'
     }))
+    email = forms.EmailField(label="email", max_length=254, widget=forms.EmailInput({
+        'class': 'form-control',
+        'place_holder': 'Введите почту'
+    }))
     
     
     class Meta:
         model = User
-        fields = ('username', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'password_second')
     
     
     def clean_password_second(self):
@@ -63,4 +68,27 @@ class UserRegistrationForm(forms.ModelForm):
         if data['password'] != data['password_second']:
             raise ValidationError('Пароли не совпадают')
         return data['password_second']
- 
+
+
+class ProfileForm(forms.ModelForm):
+    # avatar = forms.ImageField(label="avatar", allow_empty_file=True, widget=forms.FileInput({
+    #     'class': 'form-control',
+    #     'place_holder': 'Добавьте свой аватар'
+    # }))
+    
+    class Meta:
+        model = UserProfile
+        fields = ['phonenumber']
+        widgets = {
+            'phonenumber': forms.TextInput({
+            'class': 'form-control',
+            'place_holder': 'Введите номер'
+        }),
+            'avatar': forms.FileInput({
+            'class': 'form-control-file',
+            'place_holder': 'Добавьте свой аватар'
+        })
+        }
+        
+        
+    
