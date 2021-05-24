@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'shop',
     'accounts',
     'tasks',
+    'sendemail.apps.SendemailConfig',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email configs
+
+RECIPIENTS_EMAIL = ['misterionix2001@gmail.com']   # замените на свою почту
+DEFAULT_FROM_EMAIL = 'perminovvkr@gmail.com'  # замените на свою почту
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'perminovvkr@gmail.com'
+EMAIL_HOST_PASSWORD = 'pvxwrelocallcnow'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587

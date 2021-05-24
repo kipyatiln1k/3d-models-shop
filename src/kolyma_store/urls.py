@@ -24,6 +24,7 @@ urlpatterns = [
     path('', MdlListView.as_view(), name='home'),
     path('models/', include(('mdls.urls', 'mdls'))),
     path('tasks/', include(('tasks.urls', 'tasks'))),
-    path('accounts/', include(('accounts.urls', 'accounts')))
+    path('accounts/', include(('accounts.urls', 'accounts'))),
+    path('feedback/', include(('sendemail.urls', 'sendemail'))),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

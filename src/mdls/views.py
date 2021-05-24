@@ -24,6 +24,7 @@ class MdlCreateView(LoginRequiredMixin, CreateView):
     
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
+        form.instance.extension = form.instance.file.path.split('.')[-1].lower()
         return super().form_valid(form)
     
     
@@ -44,6 +45,10 @@ class MdlUpdateView(LoginRequiredMixin, UpdateView):
         if request.user == self.get_object().author:
             return super().post(request, *args, **kwargs)
         return redirect('home')
+    
+    def form_valid(self, form):
+        form.instance.extension = form.instance.file.path.split('.')[-1].lower()
+        return super().form_valid(form)
     
     
 class MdlDeleteView(LoginRequiredMixin, DeleteView):
