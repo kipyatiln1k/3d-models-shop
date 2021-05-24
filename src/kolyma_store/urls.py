@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MdlListView.as_view(), name='home'),
     path('models/', include(('mdls.urls', 'mdls'))),
+    path('tasks/', include(('tasks.urls', 'tasks'))),
     path('accounts/', include(('accounts.urls', 'accounts')))
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

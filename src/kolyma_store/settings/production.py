@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'mdls',
     'shop',
     'accounts',
+    'tasks',
 ]
 
 MIDDLEWARE = [

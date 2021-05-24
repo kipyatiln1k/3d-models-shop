@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls.base import reverse_lazy
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,20 +27,37 @@ class MdlCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
     
     
-class MdlUpdateView(UpdateView):
+class MdlUpdateView(LoginRequiredMixin, UpdateView):
     model = Mdl
     form_class = MdlForm
     template_name = "mdls/update.html"
     login_url = reverse_lazy('accounts:login')
     success_url = reverse_lazy('home')
     
+    def get(self, request, *args, **kwargs):
+        print(request.user, self.get_object().author)
+        if request.user == self.get_object().author.user:
+            return super().get(request, *args, **kwargs)
+        return redirect('home')
+
+    def post(self, request, *args, **kwargs):
+        if request.user == self.get_object().author:
+            return super().post(request, *args, **kwargs)
+        return redirect('home')
     
-class MdlDeleteView(DeleteView):
+    
+class MdlDeleteView(LoginRequiredMixin, DeleteView):
     model = Mdl
     success_url = reverse_lazy('home')
+    login_url = reverse_lazy('accounts:login')
     
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        if request.user == self.get_object().author.user:
+            return super().post(request, *args, **kwargs)
+        return redirect('home')
 
 
     

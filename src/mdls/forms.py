@@ -4,8 +4,15 @@ from django.forms import widgets
 from mdls.models import Mdl, Tag
 
 
-class MdlTagSearchForm(forms.Form):
-    """Форма поиска 3D модели по тэгам"""
+class MdlSearchForm(forms.Form):
+    """Форма поиска 3D модели."""
+    
+    text = forms.CharField(label='Введите текст для поиска', 
+                           max_length=100, 
+                           required=False, 
+                           widget=forms.TextInput(attrs={
+            'class': 'form-control'
+        }))
     
     tags = forms.ModelMultipleChoiceField(
         label='Выберите нужные категории', 
@@ -29,7 +36,7 @@ class MdlTagSearchForm(forms.Form):
         return data
     
     class Meta:
-        """Meta definition for Routeform."""
+        """Meta definition for MdlSearchForm."""
 
         model = Mdl
         fields = '__all__'
