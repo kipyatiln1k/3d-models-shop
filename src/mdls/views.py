@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.shortcuts import redirect, render
 from django.urls.base import reverse_lazy
 from django.views.generic import DetailView, CreateView

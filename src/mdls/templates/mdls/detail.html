@@ -3,7 +3,13 @@
 {% block title %}{{ object.name }}{% endblock %}
 
 {% load static %}
-{% block link %}{% endblock %}
+{% block link %}
+    <script type="text/javascript" src="{% static 'mdls/js/three.min-126.js' %} "></script>
+    <script type="text/javascript" src="{% static 'mdls/js/o3dv.min-0.7.9.js' %}"></script>
+    <script type='text/javascript'>
+        OV.Init3DViewerElements ();
+    </script>
+{% endblock %}
 
 {% block content %}
     <div class="row my-4 mt-3">
@@ -36,6 +42,21 @@
                 <p class="lead">
                     {{ object.description }}
                 </p>
+            </div>
+            <div class="row">
+                {% if object.is_visualiseble %}
+                    <div class="card col-12" style="height: 28rem;">
+                        <div class="online_3d_viewer"
+                            style="height: 26rem;"
+                            model="{{ object.file.url }}"
+                            camera="3,1,2,0,0,0,0,0,1">
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card col-12" style="height: 28rem;">
+                        <p class="lead">Данную модель нельзя визуализировать в браузере.</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

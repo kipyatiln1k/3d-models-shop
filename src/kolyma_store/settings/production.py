@@ -17,7 +17,8 @@ DB_NAME = os.environ.get('DB_NAME')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
 DB_HOST = os.environ.get('DB_HOST')
 DB_USER = os.environ.get('DB_USER')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+DB_PORT = '5432'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -51,8 +52,11 @@ INSTALLED_APPS = [
     'sendemail.apps.SendemailConfig',
 ]
 
+import whitenoise
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,11 +91,18 @@ WSGI_APPLICATION = 'kolyma_store.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgesql',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
 
+import dj_database_url
+db = dj_database_url.config()
+DATABASES['default'].update(db)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,6 +140,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / 'collect_static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
@@ -152,3 +167,6 @@ EMAIL_HOST_USER = 'perminovvkr@gmail.com'
 EMAIL_HOST_PASSWORD = 'pvxwrelocallcnow'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+
+
+VISUALIZABLE_EXTENSIONS = ['obj', 'stl', 'ply', 'gltf', '3dm', 'off']

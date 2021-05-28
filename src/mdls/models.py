@@ -4,7 +4,7 @@ from django.urls.base import reverse_lazy
 from accounts.forms import User
 from accounts.models import UserProfile
 
-from kolyma_store.settings import BASE_DIR
+from kolyma_store.settings import BASE_DIR, VISUALIZABLE_EXTENSIONS
 
 
 class Tag(models.Model):
@@ -58,6 +58,10 @@ class Mdl(models.Model):
         return reverse_lazy('mdls:detail', kwargs={'pk':self.pk})
 
     # TODO: Define custom methods here
+    
+    
+    def is_visualiseble(self):
+        return self.extension in VISUALIZABLE_EXTENSIONS
     
     
     

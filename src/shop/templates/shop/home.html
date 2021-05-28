@@ -16,8 +16,8 @@
         {% if user.is_authenticated %}
         <a class="col-xl-3 col-lg-4 col-sm-6 col-12" href="{% url 'mdls:detail' pk=object.pk %}" role="button">
           <div class="my-3">
-            <div class="card text-left">
-              <img class="card-img-top" src="{{ object.image.url }}" alt="" style="height: 150px;">
+            <div class="card text-left" style="height: 15rem;">
+              <img class="card-img-top" src="{{ object.image.url }}" alt="" style="height: 9rem;">
               <div class="card-body">
                 <h4 class="card-title">{{ object.name }}</h4>
               </div>
