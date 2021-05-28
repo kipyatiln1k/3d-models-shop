@@ -22,9 +22,11 @@ class MdlListView(ListView):
         tags_ids = self.request.GET.getlist('tags', Tag.objects.all().values_list('id', flat=True))
         order = self.request.GET.get('order', 'date')
         text = self.request.GET.get('text', '')
-        new_context = filter_by_tags(Tag.objects.filter(
-            id__in=tags_ids,
-        )).filter(Q(name__contains=text) | Q(description__contains=text)).order_by(order)
+        new_context = Mdl.objects.all()
+        if tags_ids:
+            new_context = filter_by_tags(Tag.objects.filter(
+                id__in=tags_ids,
+            )).filter(Q(name__contains=text) | Q(description__contains=text)).order_by(order)
         return new_context
         
         
