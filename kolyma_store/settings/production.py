@@ -52,8 +52,6 @@ INSTALLED_APPS = [
     'sendemail.apps.SendemailConfig',
 ]
 
-import whitenoise
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -145,6 +143,8 @@ STATIC_ROOT = BASE_DIR / 'collect_static/'
 #     os.path.join(BASE_DIR, "static"),
 # )
 STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
