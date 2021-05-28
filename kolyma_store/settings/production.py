@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://models-3d-store.herokuapp.com/']
+ALLOWED_HOSTS = ['models-3d-store.herokuapp.com', '.models-3d-store.com']
 
 
 # Application definition
