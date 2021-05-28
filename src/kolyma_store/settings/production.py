@@ -162,9 +162,9 @@ RECIPIENTS_EMAIL = ['misterionix2001@gmail.com']   # замените на св�
 DEFAULT_FROM_EMAIL = 'perminovvkr@gmail.com'  # замените на свою почту
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'perminovvkr@gmail.com'
-EMAIL_HOST_PASSWORD = 'pvxwrelocallcnow'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
