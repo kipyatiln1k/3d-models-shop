@@ -18,7 +18,7 @@ DB_PASSWORD = os.environ.get('DB_PASSWORD')
 DB_HOST = os.environ.get('DB_HOST')
 DB_USER = os.environ.get('DB_USER')
 DB_PORT = '5432'
-# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q3u2!1bckpf(1=ze&i_zf6m@)!kz(8_mr*cpmysd^&treq(=@#'
+# SECRET_KEY = 'django-insecure-q3u2!1bckpf(1=ze&i_zf6m@)!kz(8_mr*cpmysd^&treq(=@#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
