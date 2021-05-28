@@ -23,7 +23,7 @@ from shop.views import MdlListView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('favicon.ico', RedirectView.as_view(url='/static/img/favicon.ico', permanent=True)),
-    path('', MdlListView.as_view(), name='home'),
+    path('/', MdlListView.as_view(), name='home'),
     path('models/', include(('mdls.urls', 'mdls'))),
     path('tasks/', include(('tasks.urls', 'tasks'))),
     path('accounts/', include(('accounts.urls', 'accounts'))),
