@@ -89,7 +89,7 @@ def registration_view(request):
             print(user, p_form)
             return redirect('accounts:login')
     else:
-        u_form = UserRegistrationForm(request.POST)
-        p_form = ProfileForm(request.POST)
+        u_form = UserRegistrationForm()
+        p_form = ProfileForm()
     return render(request, 'accounts/register.html', {'u_form': u_form, 'p_form': p_form})
 

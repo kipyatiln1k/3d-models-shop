@@ -40,15 +40,15 @@ class UserRegistrationForm(forms.ModelForm):
     """Определение формы для авторизации пользователя."""
 
     # TODO: Define form fields here
-    username = forms.CharField(label="username", max_length=50, widget=forms.TextInput({
+    username = forms.CharField(label="Username", max_length=50, widget=forms.TextInput({
         'class': 'form-control',
         'place_holder': 'Введите логин'
     }))
-    password = forms.CharField(label="password", max_length=50, widget=forms.PasswordInput({
+    password = forms.CharField(label="Пароль", max_length=50, widget=forms.PasswordInput({
         'class': 'form-control',
         'place_holder': 'Введите пароль'
     }))
-    password_second = forms.CharField(label="password", max_length=50, widget=forms.PasswordInput({
+    password_second = forms.CharField(label="Повторите пароль", max_length=50, widget=forms.PasswordInput({
         'class': 'form-control',
         'place_holder': 'Повторите пароль'
     }))
